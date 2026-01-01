@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eng Chee Wen | Engineering Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* --- RESET & VARIABLES --- */
+      :root {
+        --bg-color: #0f172a;
+        --card-bg: #1e293b;
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-hover: #0ea5e9;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: 0.3s;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* --- LAYOUT UTILITIES --- */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: var(--accent);
+        text-align: center;
+      }
+
+      /* --- HEADER --- */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 15px 0;
+        border-bottom: 1px solid #334155;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* --- HERO SECTION --- */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding-top: 60px;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 10px;
+      }
+      .hero-content h3 {
+        font-size: 1.5rem;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+      }
+      .hero-content p {
+        max-width: 600px;
+        margin: 0 auto 30px;
+        color: var(--text-muted);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: var(--accent);
+        color: var(--bg-color);
+        font-weight: bold;
+        border-radius: 5px;
+        margin: 5px;
+      }
+      .btn:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--accent);
+        color: var(--accent);
+      }
+      .btn-outline:hover {
+        background: var(--accent);
+        color: var(--bg-color);
+      }
+
+      /* --- SKILLS --- */
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .skill-tag {
+        background: var(--card-bg);
+        padding: 10px 20px;
+        border-radius: 50px;
+        border: 1px solid #334155;
+        font-size: 0.9rem;
+      }
+
+      /* --- PROJECTS --- */
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #334155;
+        transition: transform 0.3s;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+      }
+
+      .card-content {
+        padding: 25px;
+      }
+      .card-content h3 {
+        margin-bottom: 10px;
+      }
+      .card-content .date {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .tech-badge {
+        background: rgba(56, 189, 248, 0.1);
+        color: var(--accent);
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+
+      /* --- EXPERIENCE TIMELINE --- */
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        background: #334155;
+        top: 0;
+        bottom: 0;
+        left: 20px;
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: auto;
+        left: 13px;
+        top: 15px;
+        background-color: var(--bg-color);
+        border: 3px solid var(--accent);
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .job-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--text-main);
+      }
+      .company {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .duration {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      /* --- ACHIEVEMENTS --- */
+      .achievements-list {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 10px;
+        border-left: 5px solid var(--accent);
+      }
+      .achievements-list li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .achievements-list i {
+        color: gold;
+      }
+
+      /* --- CONTACT --- */
+      .contact-methods {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+
+      .contact-item {
+        text-align: center;
+        font-size: 1.2rem;
+      }
+
+      .contact-item i {
+        display: block;
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 10px;
+      }
+
+      /* --- MOBILE --- */
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+        .nav-links {
+          display: none;
+        } /* Simplified mobile view */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">ENG CHEE WEN</div>
+          <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-content">
+        <h1>Eng Chee Wen</h1>
+        <h3>Electrical Engineering & Automation Specialist</h3>
+        <p>
+          Universiti Malaya (CGPA 3.73) | Transforming data into insights and
+          building intelligent automated systems.
+        </p>
+        <div>
+          <a href="#projects" class="btn">View My Work</a>
+          <a href="mailto:engcheewen02@gmail.com" class="btn btn-outline"
+            >Hire Me</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="about" style="background-color: #162032">
+      <div class="container">
+        <h2>Technical Arsenal</h2>
+        <div class="skills-grid">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C++ / C#</span>
+          <span class="skill-tag">MATLAB / Simulink</span>
+          <span class="skill-tag">Power BI / Spotfire</span>
+          <span class="skill-tag">Computer Vision (OpenCV)</span>
+          <span class="skill-tag">Machine Learning (YOLOv8)</span>
+          <span class="skill-tag">Raspberry Pi & Arduino</span>
+          <span class="skill-tag">SCPI Commands</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div class="card-content">
+              <h3>ULT Data Root Cause Analysis</h3>
+              <span class="date">Jul 2025 - Oct 2025</span>
+              <p>
+                Automated the analysis of high product rejection rates. Built a
+                pipeline using Python to clean raw server data (Die Attach, Wire
+                Bond) and visualized it in Power BI/Spotfire for instant root
+                cause detection.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Power BI</span>
+                <span class="tech-badge">Spotfire</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div class="card-content">
+              <h3>Drone Predictive Maintenance</h3>
+              <span class="date">Nov 2024 - June 2025</span>
+              <p>
+                Collaborated with Alphaswift to build an online platform
+                analyzing flight logs. Used Random Forest Regression to predict
+                motor lifespan and battery health based on extracted features.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Machine Learning</span>
+                <span class="tech-badge">Google Cloud</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="card-content">
+              <h3>Autonomous Robot Vision (Robocon)</h3>
+              <span class="date">2023 - 2024</span>
+              <p>
+                Implemented Jetson Orin Nano with Intel RealSense for silo
+                detection. Trained a YOLOv8 model on 5000+ images and handled
+                UART communication with Arduino control units.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">Jetson Orin</span>
+                <span class="tech-badge">YOLOv8</span>
+                <span class="tech-badge">Arduino</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card">
+            <div class="card-content">
+              <h3>Pattern Recognition GUI</h3>
+              <span class="date">Aug 2023 - Sep 2023</span>
+              <p>
+                Developed a live video feed application using OpenCV template
+                matching (90% threshold). Optimized detection speed by
+                implementing a queue-swapping algorithm for frequent patterns.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">OpenCV</span>
+                <span class="tech-badge">Tkinter</span>
+                <span class="tech-badge">Python</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="project-card">
+            <div class="card-content">
+              <h3>Driver Fatigue Detection</h3>
+              <span class="date">Aug 2023 - Dec 2023</span>
+              <p>
+                Designed a safety system calculating Eye Aspect Ratio (EAR) and
+                yawn distance to detect drowsiness, incorporating steering
+                pressure sensors for the Shell Varsity Challenge.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">Scipy</span>
+                <span class="tech-badge">Face_Utils</span>
+                <span class="tech-badge">Computer Vision</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="project-card">
+            <div class="card-content">
+              <h3>Gondorization of CPS Products</h3>
+              <span class="date">Jul 2024 - Sep 2024</span>
+              <p>
+                Standardized testing frameworks for 21 instrument models.
+                Created hierarchical configurations and automated Functional
+                Test Certificates (FTC) generation using SCPI commands.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">SCPI</span>
+                <span class="tech-badge">Automation</span>
+                <span class="tech-badge">Excel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" style="background-color: #162032">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="job-title">Intern - Data & Automation</div>
+            <div class="company">STMicroelectronics Sdn Bhd</div>
+            <span class="duration">Jul 2025 - Oct 2025</span>
+            <p>
+              Automated process flows from FactoryWorks to Power BI. Scaled
+              dashboards for 6 products and supported engineers with complex
+              Spotfire visualizations.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="job-title">Intern - Test Engineering</div>
+            <div class="company">Keysight Technologies Malaysia</div>
+            <span class="duration">Jul 2024 - Sep 2024</span>
+            <p>
+              Developed verification tests for 21 models using SCPI. Configured
+              "Code Selectors" and "Area Groups" to facilitate software
+              versioning and model availability.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="job-title">Intern - Software Integration</div>
+            <div class="company">PENCO Electronics (M) Sdn Bhd</div>
+            <span class="duration">Aug 2023 - Sep 2023</span>
+            <p>
+              Created engineering calculation GUIs and integrated PS4 joystick
+              control for Python-based games using Raspberry Pi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements">
+      <div class="container">
+        <h2>Honors & Awards</h2>
+        <ul class="achievements-list">
+          <li>
+            <i class="fas fa-trophy"></i> <strong>Champion</strong>, Engenius
+            Day 2025
+          </li>
+          <li>
+            <i class="fas fa-medal"></i> <strong>1st Runner Up</strong>, 2024
+            Medical Device Bootcamp
+          </li>
+          <li>
+            <i class="fas fa-award"></i> <strong>Top 20 Finalist</strong>, Shell
+            Challenge 2023
+          </li>
+          <li>
+            <i class="fas fa-robot"></i> <strong>Best Team</strong>, Robocon
+            Malaysia 2023
+          </li>
+          <li>
+            <i class="fas fa-star"></i> <strong>2nd Runner Up</strong>, Malaya
+            Makerton 2023
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section id="contact" style="background-color: #0b1120; padding: 50px 0">
+      <div class="container">
+        <h2>Get In Touch</h2>
+        <div class="contact-methods">
+          <a href="mailto:engcheewen02@gmail.com" class="contact-item">
+            <i class="fas fa-envelope"></i>
+            engcheewen02@gmail.com
+          </a>
+          <a
+            href="https://www.linkedin.com/in/eng-chee-wen-5c21w0307"
+            target="_blank"
+            class="contact-item"
+          >
+            <i class="fab fa-linkedin"></i>
+            LinkedIn Profile
+          </a>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            +60 10 909 8318
+          </div>
+        </div>
+        <div
+          style="
+            text-align: center;
+            margin-top: 40px;
+            color: #64748b;
+            font-size: 0.9rem;
+          "
+        >
+          &copy; 2025 Eng Chee Wen. All Rights Reserved.
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
